@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Title</title>
+	<title>大五类人格</title>
 	<script src="echarts.js"></script>
 	<style>
-		#main {
+		body {
+			display: 			flex;
+			justify-content: 	space-around;
+		}
+		.main {
 			width:	600px;
 			height:	400px;
 		}
@@ -13,46 +17,46 @@
 </head>
 <body>
 	<!--准备DOM-->
-	<div id="main"></div>
+	<div class="main" id="chart1"></div>
+	<div class="main" id="chart2"></div>
 	<script>
 	
 	
 //	基于准备好的dom，初始化echarts实例
-		var myChart = echarts.init(document.getElementById('main'));
-//
-////	指定图表的配置项和数据
-//		var option1 = {
-//			title: {
-//				text: '大五类人格'
-//			},
-//			tooltip: {},
-//			legend: {
-//				data:['OCEAN']
-//			},
-//			xAxis: {
-//				data: ['开放性', '尽责性', '外向性', '随和性', '情绪稳定性']
-//			},
-//			yAxis: {},
-//			series: [{
-//				name: 'OCEAN',
-//				type: 'bar',
-//				data: [5, 20, 36, 10, 10]
-//			}]
-//		};
-////	配置项显示图表
-//		myChart.setOption(option1);
-		
-		var option2 = {
+		var myChart1 = echarts.init(document.getElementById('chart1'));
+
+//	指定图表的配置项和数据
+		var option1 = {
 			title: {
 				text: '大五类人格'
 			},
+			tooltip: {},
 			legend: {
 				data:['OCEAN']
+			},
+			xAxis: {
+				data: ['开放性', '尽责性', '外向性', '随和性', '情绪稳定性']
+			},
+			yAxis: {},
+			series: [{
+				name: 'OCEAN',
+				type: 'bar',
+				data: [5, 20, 36, 10, 10]
+			}]
+		};
+//	配置项显示图表
+		myChart1.setOption(option1);
+
+		var myChart2 = echarts.init(document.getElementById('chart2'));
+		var option2 = {
+			title: {
+				text: '大五类人格'
 			},
 			series: [{
 				name: 'OCEAN',
 				type: 'pie',
 				radius: '70%',
+				roseType: 'angle',
 				data: [
 					{value:235, name:'开放性'},
 					{value:274, name:'尽责性'},
@@ -60,9 +64,27 @@
 					{value:335, name:'随和性'},
 					{value:400, name:'情绪稳定性'}
 				]
-			}]
+			}],
+			itemStyle: {
+				// 正常展示样式
+				normal: {
+					// 阴影的大小
+					shadowBlur: 0,
+					// 阴影水平方向偏移
+					shadowOffsetX: 0,
+					// 阴影垂直方向偏移
+					shadowOffsetY: 0,
+					// 阴影颜色
+					shadowColor: 'white'
+				},
+				// hover时样式
+				emphasis: {
+					shadowBlur: 200,
+					shadowColor: 'green'
+				}
+			}
 		};
-		myChart.setOption(option2);
+		myChart2.setOption(option2);
 	
 	</script>
 </body>
